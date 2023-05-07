@@ -3,6 +3,9 @@ version: 0.1
 imports:
   - https://get.silverbullet.md/global.plug.json
 functions:
+  excalidrawWidget:
+    path: ./excalidraw.ts:widget
+    codeWidget: excalidraw
   helloWorld:
     path: "./hello.ts:helloWorld"
     command:

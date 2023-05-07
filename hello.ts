@@ -8,6 +8,7 @@ const loneRangerQuotes = [
 ];
 
 export async function helloWorld() {
+  editor.navigate()
   await editor.flashNotification(
     loneRangerQuotes[Math.floor(Math.random() * loneRangerQuotes.length)],
   );
