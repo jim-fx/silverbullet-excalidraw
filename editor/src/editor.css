@@ -8,11 +8,11 @@
 }
 
 .button {
-  zIndex: 1000;
+  z-index: 1000;
   color: var(--button-color, var(--color-on-surface));
-  backgroundColor: var(--color-surface-low);
+  background-color: var(--color-surface-low);
   border: none;
-  borderRadius: .5rem;
+  border-radius: .5rem;
   padding: 4px 8px;
   cursor: pointer;
 }
