@@ -1,7 +1,12 @@
 {
-  "importMap": "import_map.json",
   "tasks": {
-    "build": "silverbullet plug:compile --importmap import_map.json excalidraw.plug.yaml",
-    "watch": "silverbullet plug:compile -w --importmap import_map.json excalidraw.plug.yaml"
+    "build": "silverbullet plug:compile -c deno.jsonc excalidraw.plug.yaml",
+    "watch": "silverbullet plug:compile -w -c deno.jsonc excalidraw.plug.yaml"
+  },
+  "imports": {
+    "@silverbulletmd/silverbullet": "jsr:@silverbulletmd/silverbullet@^0.10.1",
+    "$sb/": "https://deno.land/x/silverbullet@0.10.1/plug-api/",
+    "handlebars": "https://esm.sh/handlebars",
+    "yaml": "https://deno.land/std/encoding/yaml.ts"
   }
 }

@@ -1,12 +1,13 @@
-name: hello-world
+name: excalidraw
 version: 0.1
+assets:
+  - "assets/**/*.*"
 imports:
   - https://get.silverbullet.md/global.plug.json
 functions:
   excalidrawWidget:
     path: ./excalidraw.ts:widget
     codeWidget: excalidraw
-  helloWorld:
-    path: "./hello.ts:helloWorld"
-    command:
-      name: "Say hello"
+  ExcalidrawViewer:
+    path: ./excalidraw.ts:viewer
+    editor: ["excalidraw"]
