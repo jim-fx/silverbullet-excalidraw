@@ -1,0 +1,24 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-editor": "esbuild src/editor.tsx --minify --bundle --outfile=../dist/editor.js --loader:.woff2=empty --format=iife",
+    "build-widget": "esbuild src/widget.tsx --minify --bundle --outfile=../dist/widget.js --loader:.woff2=empty --format=iife",
+    "build": "pnpm run build-editor && pnpm run build-widget"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.18.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.2",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.2"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "build": "silverbullet plug:compile -c deno.jsonc excalidraw.plug.yaml",
+    "build": "cd editor && pnpm run build && cd .. && silverbullet plug:compile -c deno.jsonc excalidraw.plug.yaml",
     "watch": "silverbullet plug:compile -w -c deno.jsonc excalidraw.plug.yaml"
   },
   "imports": {

@@ -1,13 +1,18 @@
 name: excalidraw
 version: 0.1
 assets:
-  - "assets/**/*.*"
+  - "dist/**/*.*"
 imports:
   - https://get.silverbullet.md/global.plug.json
 functions:
-  excalidrawWidget:
+  ExcalidrawWidget:
     path: ./excalidraw.ts:widget
     codeWidget: excalidraw
-  ExcalidrawViewer:
-    path: ./excalidraw.ts:viewer
+  ExcalidrawEditor:
+    path: ./excalidraw.ts:editor
     editor: ["excalidraw"]
+  CreateDiagram:
+    path: ./excalidraw.ts:createDiagram
+    command:
+      name: "Excalidraw: Create diagram"
+      requireMode: r

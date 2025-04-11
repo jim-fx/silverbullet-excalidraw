@@ -1,69 +1,68 @@
-import { asset } from "@silverbulletmd/silverbullet/syscalls";
+import {
+  asset,
+  clientStore,
+  editor as sbEditor,
+  space,
+} from "@silverbulletmd/silverbullet/syscalls";
 
-const env = "development";
-
-export async function viewer(): Promise<{ html: string; script: string }> {
-  const reactDom = await asset.readAsset("excalidraw", `assets/react-dom.${env}.js`);
-  const react = await asset.readAsset("excalidraw", `assets/react.${env}.js`);
-  const main = await asset.readAsset("excalidraw", "assets/main.js");
+export async function editor(): Promise<{ html: string; script: string }> {
+  const editorJs = await asset.readAsset("excalidraw", "dist/editor.js");
+  const editorCss = await asset.readAsset("excalidraw", "dist/editor.css");
   return {
-    html: `<link rel="stylesheet" href="https://unpkg.com/excalidraw@0.6.4/dist/excalidraw.min.css">
-<script src="https://unpkg.com/@excalidraw/excalidraw@0.18.0/dist/prod/index.js"></script>
-<div id="app"></div>`,
-    script: `${react}
-    ${reactDom}
-    ${main}`
-  }
+    html: `<style>${editorCss}</style><div id="editor"></div>`,
+    script: editorJs,
+  };
 }
 
-export function widget(
-  bodyText: string,
-): { html: string; script: string } {
-  console.log({ bodyText })
+export async function widget(
+  fileName: string,
+): Promise<{ html: string; script: string }> {
+  const [widgetJs, widgetCss, excalidrawContent, darkMode] = await Promise.all([
+    asset.readAsset("excalidraw", "dist/widget.js"),
+    asset.readAsset("excalidraw", "dist/widget.css"),
+    space.readAttachment(fileName),
+    clientStore.get("darkMode"),
+  ]);
+
+  const text = new TextDecoder().decode(excalidrawContent);
+
   return {
-    html: `
-      <style>
-        .excalidraw .App-menu_bottom section {
-          display: none;
-        }
-        .disable-zen-mode {
-          display: none !important;
-       }
-      </style>
-      <code style="display: none;">${bodyText}</code>
-      <div id="app" style="min-height: 500px; overflow: hidden; border-radius: 5px;"/>
-    `,
-    script: `
-      function onChange(elements, state) {
-        sessionStorage.setItem("excalidraw-state", JSON.stringify(state));
-        sessionStorage.setItem("excalidraw-elements", JSON.stringify(elements));
-        console.log({elements})
-      }
-
-      const elements = JSON.parse(document.getElementsByTagName("code")[0]?.innerText||sessionStorage.getItem("excalidraw-elements")||'[]');
-
-      const App = () => {
-        const appState = JSON.parse(sessionStorage.getItem("excalidraw-state")||"{}");
-        delete appState.collaborators;
-        const theme = appState?.theme || "light";
-
-        return React.createElement(
-          React.Fragment,
-          null,
-          React.createElement(
-            "div", {
-              style: { height: "500px" },
-            },
-            React.createElement(ExcalidrawLib.Excalidraw, {
-              onChange, 
-              initialData: { appState, elements }, 
-              UIOptions: { canvasActions: { toggleTheme: true }},
-              theme
-            }),
-          ),
-        );
-      };
-
-    `,
+    html:
+      `<script type="application/json" id="excalidraw-content">${text}</script>
+<style>${widgetCss}</style>
+<div id="widget" data-filename="${fileName}" data-darkmode=${darkMode} />`,
+    script: widgetJs,
   };
+}
+
+export async function createDiagram() {
+  let diagramName = await sbEditor.prompt("Enter a diagram name: ", "Diagram");
+  diagramName = diagramName.trim().replace(/\.excalidraw$/, "");
+
+  const pageName = await sbEditor.getCurrentPage();
+  const directory = pageName.substring(0, pageName.lastIndexOf("/"));
+  const filePath = (directory + "/" + diagramName + ".excalidraw").replace(
+    /^\//,
+    "",
+  );
+
+  const fileExists = await space.fileExists(filePath);
+  if (fileExists) {
+    const overwrite = await sbEditor.confirm(
+      "File already exist! Do you want to overwrite?",
+    );
+    if (!overwrite) {
+      return false;
+    }
+  }
+
+  const fileContent = new TextEncoder().encode(
+    `{"type":"excalidraw","version":2,"elements":[],"appState":{},"files":{}}`,
+  );
+  await space.writeFile(filePath, fileContent);
+
+  const codeBlock = `\`\`\`excalidraw
+${filePath}
+\`\`\``;
+  await sbEditor.insertAtCursor(codeBlock);
 }
