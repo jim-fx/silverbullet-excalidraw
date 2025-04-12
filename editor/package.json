@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --minify --bundle --outfile=../dist/editor.js --external:*.woff2 --external:@excalidraw/excalidraw/dist/prod/locales/* --format=iife --analyze"
+    "build": "esbuild src/index.ts --minify --bundle --outfile=../dist/editor.js --external:*.woff2 --external:@excalidraw/excalidraw/dist/prod/locales --external:./locales/* --external:./locales/uk-UA-QMV73CPH.js --external:@excalidraw/mermaid-to-excalidraw --format=iife --metafile=meta.json"
   },
   "keywords": [],
   "author": "",
