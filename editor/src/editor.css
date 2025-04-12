@@ -1,4 +1,4 @@
-.excalidraw-viewer .App-toolbar-content {
+#editor .excalidraw-viewer .App-toolbar-content {
   display: none !important;
 }
 

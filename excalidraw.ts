@@ -18,8 +18,8 @@ export async function widget(
   fileName: string,
 ): Promise<{ html: string; script: string }> {
   const [widgetJs, widgetCss, excalidrawContent, darkMode] = await Promise.all([
-    asset.readAsset("excalidraw", "dist/widget.js"),
-    asset.readAsset("excalidraw", "dist/widget.css"),
+    asset.readAsset("excalidraw", "dist/editor.js"),
+    asset.readAsset("excalidraw", "dist/editor.css"),
     space.readAttachment(fileName),
     clientStore.get("darkMode"),
   ]);

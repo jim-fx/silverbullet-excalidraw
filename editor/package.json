@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-editor": "esbuild src/editor.tsx --minify --bundle --outfile=../dist/editor.js --loader:.woff2=empty --format=iife",
-    "build-widget": "esbuild src/widget.tsx --minify --bundle --outfile=../dist/widget.js --loader:.woff2=empty --format=iife",
-    "build": "pnpm run build-editor && pnpm run build-widget"
+    "build": "esbuild src/index.ts --minify --bundle --outfile=../dist/editor.js --external:*.woff2 --external:@excalidraw/excalidraw/dist/prod/locales/* --format=iife --analyze"
   },
   "keywords": [],
   "author": "",
@@ -17,8 +15,8 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "esbuild": "^0.25.2",
     "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.2"
+    "@types/react-dom": "^19.1.2",
+    "esbuild": "^0.25.2"
   }
 }

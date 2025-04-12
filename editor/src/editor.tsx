@@ -7,10 +7,6 @@ import { AppState, BinaryFiles, ExcalidrawInitialDataState } from "@excalidraw/e
 import { OrderedExcalidrawElement } from "@excalidraw/excalidraw/dist/types/excalidraw/element/types";
 import { SaveState } from "./types";
 
-const syscall = window.silverbullet.syscall;
-
-const root = ReactDOM.createRoot(document.getElementById("editor")!);
-
 let fileName: string = "";
 let returnLink: string = "";
 const state = {} as SaveState;
@@ -27,13 +23,13 @@ function TopRightUI() {
     onClick={() => {
       save().then(() => {
         if (returnLink) {
-          syscall("editor.navigate", returnLink);
+          silverbullet.syscall("editor.navigate", returnLink);
         } else {
           const path = fileName.split("/");
           if (path[path.length - 1].endsWith(".excalidraw")) {
             path.pop()
           }
-          syscall("editor.navigate", path.join("/"));
+          silverbullet.syscall("editor.navigate", path.join("/"));
         }
       })
     }}>Save and Exit</button>
@@ -45,7 +41,7 @@ function App({ doc, viewMode, darkMode }: { doc: ExcalidrawInitialDataState, dar
     state.elements = elements;
     state.appState = appState;
     state.files = files;
-    globalThis.silverbullet.sendMessage("file-changed", {});
+    silverbullet.sendMessage("file-changed", {});
   }
 
   return (
@@ -69,23 +65,29 @@ function App({ doc, viewMode, darkMode }: { doc: ExcalidrawInitialDataState, dar
   );
 }
 
-async function open(data: Uint8Array) {
-  fileName = await syscall("editor.getCurrentPage");
+async function open(root: ReactDOM.Root, data: Uint8Array) {
+  fileName = await silverbullet.syscall("editor.getCurrentPage");
   const excalidrawContent = new TextDecoder().decode(data);
-  const darkMode = await syscall("clientStore.get", "darkMode");
-  returnLink = await syscall("clientStore.get", "excalidraw.returnLink");
+  const darkMode = await silverbullet.syscall("clientStore.get", "darkMode");
+  returnLink = await silverbullet.syscall("clientStore.get", "excalidraw.returnLink");
 
   const doc = JSON.parse(excalidrawContent);
 
-  const url = new URL(window.location);
-  const viewMode = url.searchParams.get("viewer") === "true";
+  let params = new URLSearchParams(document.location.search);
+  const viewMode = params.get("viewer") === "true";
 
   root.render(<App doc={doc} darkMode={darkMode} viewMode={viewMode} />);
 }
 
+export function renderEditor(rootElement: HTMLElement) {
+
+  const root = ReactDOM.createRoot(rootElement);
+
+  silverbullet.addEventListener("file-open", (event) => open(root, event.detail.data));
+  silverbullet.addEventListener("file-update", (event) => open(root, event.detail.data));
+  silverbullet.addEventListener("request-save", () => save());
+
+}
 
 
-globalThis.silverbullet.addEventListener("file-open", (event) => open(event.detail.data));
-globalThis.silverbullet.addEventListener("file-update", (event) => open(event.detail.data));
-globalThis.silverbullet.addEventListener("request-save", () => save());
 

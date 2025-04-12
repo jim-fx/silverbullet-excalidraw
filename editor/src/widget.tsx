@@ -8,7 +8,6 @@ import { OrderedExcalidrawElement } from "@excalidraw/excalidraw/dist/types/exca
 import { SaveState } from "./types";
 import { debounce } from "./helpers";
 
-
 function save(filePath: string, state: SaveState) {
   const code = new TextEncoder().encode(JSON.stringify(state))
   syscall("space.writeFile", filePath, code)
@@ -70,10 +69,12 @@ function App({ doc, filePath, darkMode }: { doc: ExcalidrawInitialDataState, fil
   </div>
 }
 
-const rootElement = document.getElementById("widget")!;
-const root = ReactDOM.createRoot(rootElement);
-const fileName = rootElement.dataset.filename!;
-const fileContent = (document.querySelector("#excalidraw-content") as HTMLElement).innerText;
-const darkMode = rootElement.dataset.darkmode === "true";
-const doc = JSON.parse(fileContent)
-root.render(<App doc={doc} filePath={fileName} darkMode={darkMode} />);
+
+export function renderWidget(rootElement: HTMLElement) {
+  const root = ReactDOM.createRoot(rootElement);
+  const fileName = rootElement.dataset.filename!;
+  const fileContent = (document.querySelector("#excalidraw-content") as HTMLElement).innerText;
+  const darkMode = rootElement.dataset.darkmode === "true";
+  const doc = JSON.parse(fileContent)
+  root.render(<App doc={doc} filePath={fileName} darkMode={darkMode} />);
+}
