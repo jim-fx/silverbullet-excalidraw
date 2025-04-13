@@ -5,13 +5,17 @@ assets:
 imports:
   - https://get.silverbullet.md/global.plug.json
 functions:
+  excalidrawSlashCommand:
+    path: ./src/main.ts:snippetSlashComplete
+    events:
+      - slash:complete
   ExcalidrawWidget:
     path: ./src/main.ts:widget
     codeWidget: excalidraw
   ExcalidrawEditor:
     path: ./src/main.ts:editor
     editor: ["excalidraw"]
-  CreateDiagram:
+  createDiagram:
     path: ./src/main.ts:createDiagram
     command:
       name: "Excalidraw: Create diagram"

@@ -5,6 +5,7 @@ import {
   space,
 } from "@silverbulletmd/silverbullet/syscalls";
 import { getSettings } from "./settings.ts";
+import { SlashCompletions } from "@silverbulletmd/silverbullet/types";
 
 export async function editor(): Promise<{ html: string; script: string }> {
   const [editorJs, editorCss] = await Promise.all([
@@ -42,6 +43,11 @@ export async function createDiagram() {
   const settings = await getSettings();
 
   let diagramName = await sbEditor.prompt("Enter a diagram name: ", "Diagram");
+  if (!diagramName) {
+    sbEditor.flashNotification("No diagram name provided.");
+    return;
+  }
+
   diagramName = diagramName.trim().replace(/\.excalidraw$/, "");
 
   const pageName = await sbEditor.getCurrentPage();
@@ -69,4 +75,16 @@ export async function createDiagram() {
 ${filePath}
 \`\`\``;
   await sbEditor.insertAtCursor(codeBlock);
+}
+
+export function snippetSlashComplete(): SlashCompletions {
+  return {
+    options: [
+      {
+        label: "excalidraw",
+        detail: "Create a new Excalidraw diagram",
+        invoke: "excalidraw.createDiagram",
+      },
+    ],
+  };
 }
