@@ -4,9 +4,8 @@
     "watch": "silverbullet plug:compile -w -c deno.jsonc excalidraw.plug.yaml"
   },
   "imports": {
-    "@silverbulletmd/silverbullet": "jsr:@silverbulletmd/silverbullet@^0.10.1",
-    "$sb/": "https://deno.land/x/silverbullet@0.10.1/plug-api/",
-    "handlebars": "https://esm.sh/handlebars",
+    "@silverbulletmd/silverbullet": "jsr:@silverbulletmd/silverbullet@^0.10.4",
+    "valibot":"https://esm.sh/valibot@1.0.0",
     "yaml": "https://deno.land/std/encoding/yaml.ts"
   }
 }
