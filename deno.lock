@@ -1,7 +1,7 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@silverbulletmd/silverbullet@~0.10.1": "0.10.4",
+    "jsr:@silverbulletmd/silverbullet@~0.10.4": "0.10.4",
     "npm:js-yaml@4.1.0": "4.1.0"
   },
   "jsr": {
@@ -23,6 +23,9 @@
       ]
     }
   },
+  "redirects": {
+    "https://deno.land/x/silverbullet@0.10.4/plug-api/": "https://deno.land/x/silverbullet@0.10.4/plug-api"
+  },
   "remote": {
     "https://deno.land/x/silverbullet@0.10.4/lib/asset_bundle/bundle.ts": "5cebb61d5ec523c9d2d8b222516ed3593d40601834c3c7d2aa2b48dad00986b1",
     "https://deno.land/x/silverbullet@0.10.4/lib/command.ts": "2ec8089f8abf3a26bbf48db89a787f5796c66dfeee0a0065bbb8344c4d7ded59",
@@ -41,11 +44,13 @@
     "https://deno.land/x/silverbullet@0.10.4/lib/proxy_fetch.ts": "831d98cf7f9ada653fc958f52ad367d8511e2634400c29e1fe9d6babd230c0bf",
     "https://deno.land/x/silverbullet@0.10.4/plug-api/lib/tree.ts": "48f1080ba0e7e2545b64524328bf2673830bf6ccee37fc97286644387536e0cd",
     "https://deno.land/x/silverbullet@0.10.4/plug-api/types.ts": "2656ea5e261ba2d7bf685580c823c2bc87142a0139b655ff794c3b89ffd7cf62",
-    "https://deno.land/x/silverbullet@0.10.4/web/change.ts": "bc3204e4f34f86edd11b0fcf3fdfc1e8599cb08ca4eebe7f22451195b74440ef"
+    "https://deno.land/x/silverbullet@0.10.4/web/change.ts": "bc3204e4f34f86edd11b0fcf3fdfc1e8599cb08ca4eebe7f22451195b74440ef",
+    "https://esm.sh/valibot@1.0.0": "1a0ccef7c4f89e32b0ba3668de19103781e46c7c35b3eea72f083fd354dac5b2",
+    "https://esm.sh/valibot@1.0.0/denonext/valibot.mjs": "aa3aa522666bb0fc3d71f36a602cfa4ef40c5e412ff7a023514db92148f29136"
   },
   "workspace": {
     "dependencies": [
-      "jsr:@silverbulletmd/silverbullet@~0.10.1"
+      "jsr:@silverbulletmd/silverbullet@~0.10.4"
     ]
   }
 }

@@ -6,13 +6,13 @@ imports:
   - https://get.silverbullet.md/global.plug.json
 functions:
   ExcalidrawWidget:
-    path: ./excalidraw.ts:widget
+    path: ./src/main.ts:widget
     codeWidget: excalidraw
   ExcalidrawEditor:
-    path: ./excalidraw.ts:editor
+    path: ./src/main.ts:editor
     editor: ["excalidraw"]
   CreateDiagram:
-    path: ./excalidraw.ts:createDiagram
+    path: ./src/main.ts:createDiagram
     command:
       name: "Excalidraw: Create diagram"
       requireMode: r

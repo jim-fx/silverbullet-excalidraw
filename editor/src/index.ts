@@ -2,9 +2,8 @@ import { renderEditor } from "./editor";
 import { renderWidget } from "./widget";
 
 (function init() {
-
-  const editorElement = document.getElementById('editor');
-  const widgetElement = document.getElementById('widget');
+  const editorElement = document.getElementById("editor");
+  const widgetElement = document.getElementById("widget");
   console.log({ widgetElement, editorElement });
 
   if (editorElement) {
@@ -14,5 +13,4 @@ import { renderWidget } from "./widget";
   } else {
     console.error("Excalidraw: No editor or widget element found");
   }
-
-})()
+})();
