@@ -10,7 +10,17 @@ Run the `{[Plugs: Add]}` command and paste in: `github:jim-fx/silverbullet-excal
 
 ## Usage
 
-Run the `{[Plugs: Add]}` command and enter a name for the excalidraw file like `Diagram`
+Run the `{[Excalidraw: Create Diagram]}` command and enter a name for the excalidraw file like `Diagram`
+
+
+## Settings
+
+You can customize the behavior of the plugin by adding the following settings to your `Space Config` file:
+
+```space-config
+excalidraw:
+  createInSubfolder: true
+```
 
 ## Build
 To build the editor components you need to have [pnpm](https://pnpm.io/) installed. Then run
