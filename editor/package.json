@@ -4,19 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --minify --bundle --outfile=../dist/editor.js --external:*.woff2 --external:@excalidraw/excalidraw/dist/prod/locales --external:./locales/* --external:./locales/uk-UA-QMV73CPH.js --external:@excalidraw/mermaid-to-excalidraw --format=iife --metafile=meta.json"
+    "build": "esbuild src/index.ts --minify --bundle --outfile=../dist/editor.js --conditions=production --external:*.woff2 --external:@excalidraw/excalidraw/dist/prod/locales --external:./locales/* --external:./locales/uk-UA-QMV73CPH.js --external:@excalidraw/mermaid-to-excalidraw --format=iife --metafile=meta.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.2",
-    "esbuild": "^0.25.2"
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "esbuild": "^0.25.8"
   }
 }
