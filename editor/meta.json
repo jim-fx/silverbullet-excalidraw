@@ -4652,8 +4652,13 @@
       "bytes": 347,
       "imports": []
     },
+    "src/keyboard-guard.ts": {
+      "bytes": 3094,
+      "imports": [],
+      "format": "esm"
+    },
     "src/editor.tsx": {
-      "bytes": 3135,
+      "bytes": 3374,
       "imports": [
         {
           "path": "node_modules/.pnpm/react@19.1.1/node_modules/react/index.js",
@@ -4694,6 +4699,11 @@
           "path": "./types",
           "kind": "import-statement",
           "external": true
+        },
+        {
+          "path": "src/keyboard-guard.ts",
+          "kind": "import-statement",
+          "original": "./keyboard-guard"
         }
       ],
       "format": "esm"
@@ -5117,10 +5127,10 @@
           "bytesInOutput": 179
         },
         "node_modules/.pnpm/png-chunks-encode@1.0.0/node_modules/png-chunks-encode/index.js": {
-          "bytesInOutput": 683
+          "bytesInOutput": 685
         },
         "node_modules/.pnpm/pako@2.0.3/node_modules/pako/dist/pako.esm.mjs": {
-          "bytesInOutput": 45986
+          "bytesInOutput": 45989
         },
         "node_modules/.pnpm/open-color@1.9.1/node_modules/open-color/open-color.json": {
           "bytesInOutput": 1457
@@ -5294,7 +5304,7 @@
           "bytesInOutput": 2918
         },
         "src/editor.tsx": {
-          "bytesInOutput": 1620
+          "bytesInOutput": 1625
         },
         "node_modules/.pnpm/@excalidraw+excalidraw@0.18.0_@types+react-dom@19.1.7_@types+react@19.1.9__@types+react_486fc206766db866becd26a102c8e353/node_modules/@excalidraw/excalidraw/dist/prod/index.js": {
           "bytesInOutput": 494044
@@ -5524,6 +5534,9 @@
         "src/editor.css": {
           "bytesInOutput": 0
         },
+        "src/keyboard-guard.ts": {
+          "bytesInOutput": 496
+        },
         "src/widget.tsx": {
           "bytesInOutput": 1348
         },
@@ -5537,7 +5550,7 @@
           "bytesInOutput": 218
         }
       },
-      "bytes": 3253416
+      "bytes": 3253922
     },
     "../dist/editor.css": {
       "imports": [

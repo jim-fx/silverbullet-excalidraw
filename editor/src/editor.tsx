@@ -6,6 +6,7 @@ import "./editor.css"
 import { AppState, BinaryFiles, ExcalidrawInitialDataState } from "@excalidraw/excalidraw/dist/types/excalidraw/types";
 import { OrderedExcalidrawElement } from "@excalidraw/excalidraw/dist/types/excalidraw/element/types";
 import { SaveState } from "./types";
+import { installKeyboardGuard } from "./keyboard-guard";
 
 let fileName: string = "";
 let returnLink: string = "";
@@ -80,6 +81,10 @@ async function open(root: ReactDOM.Root, data: Uint8Array) {
 }
 
 export function renderEditor(rootElement: HTMLElement) {
+
+  // Keep editing keys (Backspace/Delete/arrows/…) inside Excalidraw instead of
+  // letting SilverBullet's host editor swallow them and exit edit mode.
+  installKeyboardGuard();
 
   const root = ReactDOM.createRoot(rootElement);
 
