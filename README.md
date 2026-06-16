@@ -4,13 +4,18 @@
 This plugin adds Excalidraw support to Silverbullet, allowing you to create and edit diagrams directly in your notes.
 
 ## Installation
-Run the `{[Plugs: Add]}` command and paste in: `github:jim-fx/silverbullet-excalidraw/excalidraw.plug.js`
+This plug is distributed as a [Library](https://silverbullet.md/Library). Run the
+`{[Library: Install]}` command and paste in the library URI:
+
+```
+https://github.com/jim-fx/silverbullet-excalidraw/blob/main/PLUG.md
+```
 
 *That's all!*
 
 ## Usage
 
-Run the `{[Excalidraw: Create Diagram]}` command and enter a name for the excalidraw file like `Diagram`
+Run the `{[Excalidraw: Create diagram]}` command (or the `/excalidraw` slash command) and enter a name for the excalidraw file like `Diagram`.
 
 
 ## Settings
@@ -23,15 +28,23 @@ excalidraw:
 ```
 
 ## Build
-To build the editor components you need to have [pnpm](https://pnpm.io/) installed. Then run
+The plug has two parts: the editor frontend (React + Excalidraw, built with
+[pnpm](https://pnpm.io/)) and the plug itself (built with the
+`plug-compile` CLI shipped by [`@silverbulletmd/silverbullet`](https://www.npmjs.com/package/@silverbulletmd/silverbullet)).
+
+Install the dependencies once:
 ```shell
-cd editor
-pnpm install
+npm install
+cd editor && pnpm install && cd ..
 ```
 
-To build the plugin run this from the root of the project:
+Then build everything (editor bundle + `excalidraw.plug.js`) from the project root:
 ```shell
-deno task build
+npm run build
 ```
 
+You can also rebuild the parts individually with `npm run build:editor` and
+`npm run build:plug`, or watch the plug with `npm run watch`.
 
+To develop, copy the resulting `excalidraw.plug.js` into your space and run the
+`{[Plugs: Reload]}` command.

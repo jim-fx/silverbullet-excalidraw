@@ -5,7 +5,7 @@ import {
   space,
 } from "@silverbulletmd/silverbullet/syscalls";
 import { getSettings } from "./settings.ts";
-import { SlashCompletions } from "@silverbulletmd/silverbullet/types";
+import { SlashCompletions } from "@silverbulletmd/silverbullet/type/client";
 
 export async function editor(): Promise<{ html: string; script: string }> {
   const [editorJs, editorCss] = await Promise.all([

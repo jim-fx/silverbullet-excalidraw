@@ -1,0 +1,17 @@
+{
+  "name": "silverbullet-excalidraw",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Excalidraw support for SilverBullet",
+  "type": "module",
+  "scripts": {
+    "build:editor": "cd editor && pnpm run build",
+    "build:plug": "npx plug-compile excalidraw.plug.yaml",
+    "build": "npm run build:editor && npm run build:plug",
+    "watch": "npx plug-compile -w excalidraw.plug.yaml"
+  },
+  "dependencies": {
+    "@silverbulletmd/silverbullet": ">=2.9.0",
+    "valibot": "^1.0.0"
+  }
+}

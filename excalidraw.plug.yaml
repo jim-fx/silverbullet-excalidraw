@@ -1,9 +1,6 @@
 name: excalidraw
-version: 0.2
 assets:
   - "dist/**/*.*"
-imports:
-  - https://get.silverbullet.md/global.plug.json
 functions:
   excalidrawSlashCommand:
     path: ./src/main.ts:snippetSlashComplete
@@ -19,4 +16,4 @@ functions:
     path: ./src/main.ts:createDiagram
     command:
       name: "Excalidraw: Create diagram"
-      requireMode: r
+      requireMode: rw
