@@ -1,5 +1,5 @@
 ---
-name: Library/jim-fx/excalidraw/PLUG
+name: Library/jim-fx/silverbullet-excalidraw
 tags: meta/library
 files:
 - excalidraw.plug.js
@@ -11,6 +11,7 @@ After installing, run the `Excalidraw: Create diagram` command (or the
 `/excalidraw` slash command) to create a new `.excalidraw` file and embed it.
 
 ## Settings
+
 You can customize the behavior of the plugin by adding the following to your
 `Space Config`:
 
