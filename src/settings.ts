@@ -11,7 +11,7 @@ const settingsSchema = v.strictObject({
 export async function getSettings(): Promise<
   v.InferOutput<typeof settingsSchema>
 > {
-  const settings = await system.getSpaceConfig("excalidraw");
+  const settings = await system.getConfig("excalidraw", {});
 
   const result = v.parse(
     settingsSchema,
